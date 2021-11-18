@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/shukhratabdullaev/IT-Incubator-social/static/css/main.4360c0ed.chunk.css",
+    "main.js": "/shukhratabdullaev/IT-Incubator-social/static/js/main.ec5c46f8.chunk.js",
+    "main.js.map": "/shukhratabdullaev/IT-Incubator-social/static/js/main.ec5c46f8.chunk.js.map",
+    "runtime-main.js": "/shukhratabdullaev/IT-Incubator-social/static/js/runtime-main.52d17de0.js",
+    "runtime-main.js.map": "/shukhratabdullaev/IT-Incubator-social/static/js/runtime-main.52d17de0.js.map",
+    "static/js/2.acc4c032.chunk.js": "/shukhratabdullaev/IT-Incubator-social/static/js/2.acc4c032.chunk.js",
+    "static/js/2.acc4c032.chunk.js.map": "/shukhratabdullaev/IT-Incubator-social/static/js/2.acc4c032.chunk.js.map",
+    "static/js/3.91f3c77a.chunk.js": "/shukhratabdullaev/IT-Incubator-social/static/js/3.91f3c77a.chunk.js",
+    "static/js/3.91f3c77a.chunk.js.map": "/shukhratabdullaev/IT-Incubator-social/static/js/3.91f3c77a.chunk.js.map",
+    "index.html": "/shukhratabdullaev/IT-Incubator-social/index.html",
+    "static/css/main.4360c0ed.chunk.css.map": "/shukhratabdullaev/IT-Incubator-social/static/css/main.4360c0ed.chunk.css.map",
+    "static/js/2.acc4c032.chunk.js.LICENSE.txt": "/shukhratabdullaev/IT-Incubator-social/static/js/2.acc4c032.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.52d17de0.js",
+    "static/js/2.acc4c032.chunk.js",
+    "static/css/main.4360c0ed.chunk.css",
+    "static/js/main.ec5c46f8.chunk.js"
+  ]
+}
