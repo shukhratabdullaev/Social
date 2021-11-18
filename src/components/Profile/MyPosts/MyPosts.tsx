@@ -8,7 +8,7 @@ export const MyPosts = (props: ProfilePageType) => {
 
 
     const postsElements =
-        props.posts.map(p => <Post id={p.id} message={p.message} likesCount={p.likesCount}/>)
+        props.posts.map(p => <Post id={p.id}  message={p.message} likesCount={p.likesCount}/>)
 
     const newPostElement = React.createRef<HTMLTextAreaElement>()
 
