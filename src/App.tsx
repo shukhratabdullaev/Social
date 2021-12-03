@@ -4,12 +4,13 @@ import {Header} from './components/Header/Header';
 import {Navbar} from './components/Navbar/Navbar';
 import {Profile} from './components/Profile/Profile';
 import {Dialogs} from './components/Dialogs/Dialogs';
-import {Route, Routes, Link} from 'react-router-dom';
-import {addPost, RootStateType} from './Redux/state';
+import {Route, Routes} from 'react-router-dom';
+import {ActionsType, StoreType} from './redux/state';
 
 type AppPropsType = {
-    state: RootStateType
-    addPost: (postMessage: string) => void
+    store: StoreType
+    message: string
+    dispatch: (action: ActionsType) => void
 }
 
 const App = (props: AppPropsType) => {
@@ -21,11 +22,13 @@ const App = (props: AppPropsType) => {
             <div className='app-wrapper-content'>
                 <Routes>
                     <Route path='/dialogs'
-                           element={<Dialogs dialogs={props.state.dialogsPage.dialogs}
-                                             messages={props.state.dialogsPage.messages}/>}/>
+                           element={<Dialogs dialogs={props.store.getState().dialogsPage.dialogs}
+                                             messages={props.store.getState().dialogsPage.messages}/>}/>
                     <Route path='/profile'
-                           element={<Profile posts={props.state.profilePage.posts}
-                                             addPost={props.addPost}/>}/>
+                           element={<Profile message={props.message}
+                                             posts={props.store.getState().profilePage.posts}
+                                             dispatch={props.dispatch}
+                           />}/>
                 </Routes>
             </div>
         </div>

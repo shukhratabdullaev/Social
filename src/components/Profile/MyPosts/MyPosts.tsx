@@ -1,5 +1,7 @@
 import React, {LegacyRef} from 'react';
-import { ProfilePageType } from '../Profile';
+import {ChangeEvent} from 'react';
+import {addPostAC, ChangeNewTextAC} from '../../../redux/state';
+import {ProfilePageType} from '../Profile';
 import s from './MyPosts.module.css'
 import {Post} from './Post/Post';
 
@@ -8,15 +10,14 @@ export const MyPosts = (props: ProfilePageType) => {
 
 
     const postsElements =
-        props.posts.map(p => <Post id={p.id}  message={p.message} likesCount={p.likesCount}/>)
+        props.posts.map(p => <Post key={p.id} id={p.id} message={p.message} likesCount={p.likesCount}/>)
 
-    const newPostElement = React.createRef<HTMLTextAreaElement>()
 
     const addPost = () => {
-        if (newPostElement.current) {
-            props.addPost(newPostElement.current.value)
-            newPostElement.current.value = ''
-        }
+        props.dispatch(addPostAC(props.message))
+    }
+    const changeNewTextHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        props.dispatch(ChangeNewTextAC(e.currentTarget.value))
     }
 
 
@@ -27,7 +28,7 @@ export const MyPosts = (props: ProfilePageType) => {
             </div>
             <div>
                 <div>
-                    <textarea ref={newPostElement}></textarea>
+                    <textarea value={props.message} onChange={changeNewTextHandler}></textarea>
                 </div>
                 <div>
                     <button onClick={addPost}>Add post</button>
