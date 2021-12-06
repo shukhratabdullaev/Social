@@ -1,9 +1,11 @@
-import React, {LegacyRef} from 'react';
-import {ChangeEvent} from 'react';
-import {addPostAC, ChangeNewTextAC} from '../../../redux/state';
+import React, {ChangeEvent} from 'react';
+import {addPostAC, ChangeNewTextAC} from '../../../redux/profile-reducer';
+import { PostType } from '../../../redux/store';
 import {ProfilePageType} from '../Profile';
 import s from './MyPosts.module.css'
 import {Post} from './Post/Post';
+
+
 
 
 export const MyPosts = (props: ProfilePageType) => {

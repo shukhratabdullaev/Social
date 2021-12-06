@@ -1,3 +1,7 @@
+import {changeUserMessageTextAC, dialogReducer, sendUsersMessage} from "./dialog-reducer"
+import {addPostAC, ChangeNewTextAC, profileReducer} from "./profile-reducer"
+import {sidebarReducer} from "./sidebar-reducer"
+
 export type MessageType = {
     id: number
     message: string
@@ -18,6 +22,7 @@ export type ProfilePageType = {
 export type DialogsPage = {
     dialogs: Array<DialogType>
     messages: Array<MessageType>
+    newMessage: string
 }
 export type SidebarType = {}
 export type RootStateType = {
@@ -32,20 +37,11 @@ export type StoreType = {
     subscribe: (observer: () => void) => void
     dispatch: (action: ActionsType) => void
 }
-export type ActionsType = ReturnType<typeof addPostAC> | ReturnType<typeof ChangeNewTextAC>
-
-export const addPostAC = (postMessage: string) => {
-    return {
-        type: "ADD-POST",
-        postMessage: postMessage
-    } as const
-}
-export const ChangeNewTextAC = (newText: string) => {
-    return {
-        type: "CHANGE-NEW-TEXT",
-        newText: newText
-    } as const
-}
+export type ActionsType =
+    ReturnType<typeof addPostAC>
+    | ReturnType<typeof ChangeNewTextAC>
+    | ReturnType<typeof changeUserMessageTextAC>
+    | ReturnType<typeof sendUsersMessage>
 
 
 export const store: StoreType = {
@@ -71,10 +67,11 @@ export const store: StoreType = {
             messages: [
                 {id: 1, message: 'Hi'},
                 {id: 2, message: 'How is your it-kamasutra'},
+                {id: 3, message: 'Yo'},
                 {id: 4, message: 'Yo'},
                 {id: 5, message: 'Yo'},
-                {id: 6, message: 'Yo'},
-            ]
+            ],
+            newMessage: ''
         },
         sidebar: {}
     },
@@ -88,20 +85,12 @@ export const store: StoreType = {
         return this._state
     },
     dispatch(action) {
-        if (action.type === 'ADD-POST') {
-            const newPost: PostType = {
-                id: 5,
-                message: action.postMessage,
-                likesCount: 0
-            }
-            this._state.profilePage.posts.push(newPost)
-            this._state.profilePage.messageForNewPost = ''
-            this._callSubscriber()
-        } else if (action.type === 'CHANGE-NEW-TEXT') {
-            this._state.profilePage.messageForNewPost = action.newText
-            this._callSubscriber()
-        }
 
+        this._state.profilePage = profileReducer(this._state.profilePage, action)
+        this._state.dialogsPage = dialogReducer(this._state.dialogsPage, action)
+        this._state.sidebar = sidebarReducer(this._state.sidebar, action)
+
+        this._callSubscriber()
     },
 }
 
