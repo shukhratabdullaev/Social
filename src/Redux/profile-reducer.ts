@@ -4,6 +4,8 @@ const ADD_POST = 'ADD-POST'
 const CHANGE_NEW_TEXT = 'CHANGE-NEW-TEXT'
 
 
+
+
 let initialState = {
     posts: [
         {id: 1, message: 'Hi, how are you?', likesCount: 12},
@@ -14,7 +16,7 @@ let initialState = {
     messageForNewPost: ''
 }
 
-export const profileReducer = (state: ProfilePageType = initialState, action: ActionsType) => {
+export const profileReducer = (state: ProfilePageType = initialState, action: ActionsType): ProfilePageType => {
     switch (action.type) {
         case ADD_POST:
             const newPost: PostType = {
@@ -36,13 +38,13 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Ac
 
 export const addPostAC = (postMessage: string) => {
     return {
-        type: "ADD-POST",
+        type: ADD_POST,
         postMessage: postMessage
     } as const
 }
 export const ChangeNewTextAC = (newText: string) => {
     return {
-        type: "CHANGE-NEW-TEXT",
+        type: CHANGE_NEW_TEXT,
         newText: newText
     } as const
 }

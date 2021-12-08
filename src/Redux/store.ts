@@ -1,12 +1,12 @@
-import {changeUserMessageTextAC, dialogReducer, sendUsersMessage} from "./dialog-reducer"
+import {changeUserMessageTextAC, dialogReducer, sendUsersMessageAC} from "./dialog-reducer"
 import {addPostAC, ChangeNewTextAC, profileReducer} from "./profile-reducer"
 import {sidebarReducer} from "./sidebar-reducer"
 
-export type MessageType = {
+type MessageType = {
     id: number
     message: string
 }
-export type DialogType = {
+type DialogType = {
     id: number
     name: string
 }
@@ -19,7 +19,7 @@ export type ProfilePageType = {
     messageForNewPost: string
     posts: Array<PostType>
 }
-export type DialogsPage = {
+type DialogsPageType = {
     dialogs: Array<DialogType>
     messages: Array<MessageType>
     newMessage: string
@@ -27,7 +27,7 @@ export type DialogsPage = {
 export type SidebarType = {}
 export type RootStateType = {
     profilePage: ProfilePageType
-    dialogsPage: DialogsPage
+    dialogsPage: DialogsPageType
     sidebar: SidebarType
 }
 export type StoreType = {
@@ -41,7 +41,7 @@ export type ActionsType =
     ReturnType<typeof addPostAC>
     | ReturnType<typeof ChangeNewTextAC>
     | ReturnType<typeof changeUserMessageTextAC>
-    | ReturnType<typeof sendUsersMessage>
+    | ReturnType<typeof sendUsersMessageAC>
 
 
 export const store: StoreType = {

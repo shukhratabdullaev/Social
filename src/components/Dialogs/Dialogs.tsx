@@ -2,33 +2,24 @@ import React, {ChangeEvent} from 'react'
 import s from './Dialogs.module.css'
 import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
-import {
-    changeUserMessageTextAC,
-    sendUsersMessage
-} from '../../redux/dialog-reducer';
-import {ActionsType, DialogType, MessageType } from '../../redux/store';
+import {DialogsPropsType} from './DialogsContainer';
 
 
-export type DialogsPage = {
-    dialogs: Array<DialogType>
-    messages: Array<MessageType>
-    newMessage: string
-    dispatch: (action: ActionsType) => void
-}
-
-export const Dialogs = (props: DialogsPage) => {
+export const Dialogs = (props: DialogsPropsType) => {
 
 
-    let dialogsElements = props.dialogs.map(d => <DialogItem key={d.id} name={d.name} id={d.id}/>)
+    let dialogsElements = props.dialogsPage.dialogs.map(d => <DialogItem key={d.id} name={d.name} id={d.id}/>)
 
-    let messagesElements = props.messages.map(m => <Message key={m.id} messageContent={m.message}/>)
+    let messagesElements = props.dialogsPage.messages.map(m => <Message key={m.id} messageContent={m.message}/>)
 
 
     const onChangeUserMessageHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.dispatch(changeUserMessageTextAC(e.currentTarget.value))
+        // props.dispatch(changeUserMessageTextAC(e.currentTarget.value))
+        props.onChangeUserMessageHandler(e.currentTarget.value)
     }
     const addUsersMessage = () => {
-        props.dispatch(sendUsersMessage(props.newMessage))
+        // props.dispatch(sendUsersMessage(props.newMessage))
+        props.addUsersMessage(props.dialogsPage.newMessage)
     }
 
     return (
@@ -38,7 +29,7 @@ export const Dialogs = (props: DialogsPage) => {
             </div>
             <div className={s.messages}>
                 {messagesElements}
-                <textarea value={props.newMessage} onChange={onChangeUserMessageHandler}></textarea>
+                <textarea value={props.dialogsPage.newMessage} onChange={onChangeUserMessageHandler}></textarea>
                 <button onClick={addUsersMessage}>Send</button>
             </div>
         </div>

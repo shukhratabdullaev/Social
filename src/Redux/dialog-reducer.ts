@@ -1,4 +1,5 @@
-import {ActionsType, DialogsPage} from "./store"
+import { DialogsPageType } from "../components/Dialogs/DialogsContainer"
+import {ActionsType} from "./store"
 
 const CHANGE_MESSAGE_TEXT = 'UPDATE-USER-MESSAGE-TEXT'
 const SEND_USERS_MESSAGE = 'SEND-USERS-MESSAGE'
@@ -22,7 +23,7 @@ let initialState =  {
         newMessage: ''
     }
 
-export const dialogReducer = (state: DialogsPage = initialState, action: ActionsType) => {
+export const dialogReducer = (state: DialogsPageType = initialState, action: ActionsType):DialogsPageType => {
     switch (action.type) {
         case CHANGE_MESSAGE_TEXT:
             state.newMessage = action.newMessageText
@@ -39,13 +40,13 @@ export const dialogReducer = (state: DialogsPage = initialState, action: Actions
 
 export const changeUserMessageTextAC = (userText: string) => {
     return {
-        type: 'UPDATE-USER-MESSAGE-TEXT',
+        type: CHANGE_MESSAGE_TEXT,
         newMessageText: userText
     } as const
 }
-export const sendUsersMessage = (messageText: string) => {
+export const sendUsersMessageAC = (messageText: string) => {
     return {
-        type: 'SEND-USERS-MESSAGE',
+        type: SEND_USERS_MESSAGE,
         messageText: messageText
     } as const
 }

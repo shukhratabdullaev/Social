@@ -1,14 +1,10 @@
 import React, {ChangeEvent} from 'react';
-import {addPostAC, ChangeNewTextAC} from '../../../redux/profile-reducer';
-import { PostType } from '../../../redux/store';
-import {ProfilePageType} from '../Profile';
 import s from './MyPosts.module.css'
+import {ProfilePagePropsType} from './MyPostsContainer';
 import {Post} from './Post/Post';
 
 
-
-
-export const MyPosts = (props: ProfilePageType) => {
+export const MyPosts = (props: ProfilePagePropsType) => {
 
 
     const postsElements =
@@ -16,10 +12,10 @@ export const MyPosts = (props: ProfilePageType) => {
 
 
     const addPost = () => {
-        props.dispatch(addPostAC(props.message))
+        props.addPost(props.messageForNewPost)
     }
     const changeNewTextHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.dispatch(ChangeNewTextAC(e.currentTarget.value))
+        props.ChangeNewText(e.currentTarget.value)
     }
 
 
@@ -30,7 +26,7 @@ export const MyPosts = (props: ProfilePageType) => {
             </div>
             <div>
                 <div>
-                    <textarea value={props.message} onChange={changeNewTextHandler}></textarea>
+                    <textarea value={props.messageForNewPost} onChange={changeNewTextHandler}></textarea>
                 </div>
                 <div>
                     <button onClick={addPost}>Add post</button>
