@@ -14,11 +14,9 @@ export const Dialogs = (props: DialogsPropsType) => {
 
 
     const onChangeUserMessageHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        // props.dispatch(changeUserMessageTextAC(e.currentTarget.value))
         props.onChangeUserMessageHandler(e.currentTarget.value)
     }
     const addUsersMessage = () => {
-        // props.dispatch(sendUsersMessage(props.newMessage))
         props.addUsersMessage(props.dialogsPage.newMessage)
     }
 

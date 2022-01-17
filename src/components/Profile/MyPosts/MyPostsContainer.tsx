@@ -35,8 +35,6 @@ const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
         addPost: (postMessage: string) => {
             dispatch(addPostAC(postMessage))
         }
-
-
     }
 }
 

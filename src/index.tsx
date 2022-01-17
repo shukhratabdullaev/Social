@@ -7,23 +7,15 @@ import App from './App';
 import {Provider} from 'react-redux';
 import {store} from './redux/redux-store';
 
-export const rerenderEntireTree = () => {
-    ReactDOM.render(
-        <BrowserRouter>
-            <Provider store={store}>
-                <App dialogsPage={store.getState().dialogsPage}
-                     profilePage={store.getState().profilePage}
-                     sidebar={store.getState().sidebar}/>
-            </Provider>
-        </BrowserRouter>, document.getElementById('root')
-    );
-}
-
-
-rerenderEntireTree()
-store.subscribe(() => {
-    rerenderEntireTree()
-})
+ReactDOM.render(
+    <BrowserRouter>
+        <Provider store={store}>
+            <App dialogsPage={store.getState().dialogsPage}
+                 profilePage={store.getState().profilePage}
+                 sidebar={store.getState().sidebar}/>
+        </Provider>
+    </BrowserRouter>, document.getElementById('root')
+);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
