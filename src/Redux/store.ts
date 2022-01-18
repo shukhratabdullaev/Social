@@ -1,6 +1,7 @@
 import {changeUserMessageTextAC, dialogReducer, sendUsersMessageAC} from "./dialog-reducer"
 import {addPostAC, ChangeNewTextAC, profileReducer} from "./profile-reducer"
 import {sidebarReducer} from "./sidebar-reducer"
+import { followAC, setUsersAC, unfollowAC,  } from "./users-reducer"
 
 type MessageType = {
     id: number
@@ -42,6 +43,9 @@ export type ActionsType =
     | ReturnType<typeof ChangeNewTextAC>
     | ReturnType<typeof changeUserMessageTextAC>
     | ReturnType<typeof sendUsersMessageAC>
+    | ReturnType<typeof followAC>
+    | ReturnType<typeof unfollowAC>
+    | ReturnType<typeof setUsersAC>
 
 
 export const store: StoreType = {

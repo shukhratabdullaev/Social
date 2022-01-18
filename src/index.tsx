@@ -12,7 +12,9 @@ ReactDOM.render(
         <Provider store={store}>
             <App dialogsPage={store.getState().dialogsPage}
                  profilePage={store.getState().profilePage}
-                 sidebar={store.getState().sidebar}/>
+                 sidebar={store.getState().sidebar}
+                 usersPage={store.getState().usersPage}
+            />
         </Provider>
     </BrowserRouter>, document.getElementById('root')
 );
