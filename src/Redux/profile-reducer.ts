@@ -1,4 +1,6 @@
-import {ActionsType, PostType, ProfilePageType} from "./store"
+import { ProfilePageType } from "../components/Profile/MyPosts/MyPostsContainer";
+import { PostType } from "../components/Profile/Profile";
+import {ActionsType} from "./store";
 
 const ADD_POST = 'ADD-POST'
 const CHANGE_NEW_TEXT = 'CHANGE-NEW-TEXT'

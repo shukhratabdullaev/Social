@@ -1,9 +1,9 @@
 import {connect} from 'react-redux';
 import {Dispatch} from 'redux';
-import {addPostAC, ChangeNewTextAC} from '../../../redux/profile-reducer';
-import {AppStateType} from '../../../redux/redux-store';
-import {PostType} from '../../../redux/store';
+import {addPostAC, ChangeNewTextAC} from '../../../Redux/profile-reducer';
+import {AppStateType} from '../../../Redux/redux-store';
 import {MyPosts} from './MyPosts';
+import {PostType} from "../Profile";
 
 export type ProfilePageType = {
     posts: Array<PostType>

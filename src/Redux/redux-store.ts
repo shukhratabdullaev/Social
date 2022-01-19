@@ -1,8 +1,8 @@
 import {combineReducers, createStore} from "redux";
-import {dialogReducer} from "./dialog-reducer";
-import {profileReducer} from "./profile-reducer";
-import {sidebarReducer} from "./sidebar-reducer";
-import { usersReducer } from "./users-reducer";
+import {dialogReducer} from "../../src/Redux/dialog-reducer";
+import {profileReducer} from "../../src/Redux/profile-reducer";
+import {sidebarReducer} from "../../src/Redux/sidebar-reducer";
+import { usersReducer } from "../../src/Redux/users-reducer";
 
 
 

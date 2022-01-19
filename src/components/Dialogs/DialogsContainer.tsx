@@ -1,7 +1,7 @@
-import {changeUserMessageTextAC, sendUsersMessageAC} from '../../redux/dialog-reducer';
+import {changeUserMessageTextAC, sendUsersMessageAC} from '../../Redux/dialog-reducer';
 import {connect} from 'react-redux';
 import {Dialogs} from './Dialogs';
-import {AppStateType} from '../../redux/redux-store';
+import {AppStateType} from '../../../src/Redux/redux-store';
 import {Dispatch} from 'redux';
 
 

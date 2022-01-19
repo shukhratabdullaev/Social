@@ -1,9 +1,13 @@
 import React from 'react';
-import {ActionsType, PostType} from '../../redux/store';
-import {MyPosts} from './MyPosts/MyPosts';
-import { MyPostsContainer } from './MyPosts/MyPostsContainer';
+import {MyPostsContainer} from './MyPosts/MyPostsContainer';
 import {ProfileInfo} from './ProfileInfo/ProfileInfo';
 
+
+export type PostType = {
+    id: number
+    message: string
+    likesCount: number
+}
 
 export type ProfilePageType = {
     message: string

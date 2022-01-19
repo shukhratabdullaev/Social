@@ -1,7 +1,8 @@
-import {changeUserMessageTextAC, dialogReducer, sendUsersMessageAC} from "./dialog-reducer"
-import {addPostAC, ChangeNewTextAC, profileReducer} from "./profile-reducer"
-import {sidebarReducer} from "./sidebar-reducer"
-import { followAC, setUsersAC, unfollowAC,  } from "./users-reducer"
+import {changeUserMessageTextAC, dialogReducer, sendUsersMessageAC} from "../Redux/dialog-reducer"
+import {PostType} from "../components/Profile/Profile";
+import {addPostAC, ChangeNewTextAC, profileReducer} from "./profile-reducer";
+import {followAC, setUsersAC, unfollowAC} from "./users-reducer";
+import {sidebarReducer} from "./sidebar-reducer";
 
 type MessageType = {
     id: number
@@ -11,11 +12,7 @@ type DialogType = {
     id: number
     name: string
 }
-export type PostType = {
-    id: number
-    message: string
-    likesCount: number
-}
+
 export type ProfilePageType = {
     messageForNewPost: string
     posts: Array<PostType>
