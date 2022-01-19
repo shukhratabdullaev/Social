@@ -8,7 +8,7 @@ import {Provider} from 'react-redux';
 import {store} from './redux/redux-store';
 
 ReactDOM.render(
-    <BrowserRouter>
+    <BrowserRouter basename={'Social'}>
         <Provider store={store}>
             <App dialogsPage={store.getState().dialogsPage}
                  profilePage={store.getState().profilePage}
