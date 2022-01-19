@@ -3,7 +3,7 @@ import styles from './users.module.css'
 
 
 export const Users = (props: UsersPropsType) => {
-if (props.users.length === 0) {
+if ( props.users.length === 0 ) {
 
 
     props.setUsers(
