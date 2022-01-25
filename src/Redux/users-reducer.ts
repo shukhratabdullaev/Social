@@ -1,5 +1,5 @@
 import {UsersType, UserType} from "../components/Users/UsersContainer"
-import {ActionsType} from "../../src/Redux/store"
+import {ActionsType} from "../Redux/store"
 
 
 const FOLLOW = 'FOLLOW'

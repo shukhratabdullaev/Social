@@ -2,14 +2,13 @@ import {connect} from 'react-redux';
 import {Dispatch} from 'redux';
 import {AppStateType} from '../../../src/Redux/redux-store';
 import {followAC, setUsersAC, unfollowAC} from '../../../src/Redux/users-reducer';
-import {Users} from './Users';
-
+import {UsersC} from "./UsersC";
 
 
 export type UserType = {
     id: number
-    photoURL: string
-    fullName: string
+    photos: any
+    name: string
     followed: boolean
     status: string
     location: { city: string, country: string }
@@ -53,4 +52,4 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
 }
 
 
-export const UsersContainer = connect<MapStateToPropsType, MapDispatchToPropsType, {}, AppStateType>(mapStateToProps, mapDispatchToProps)(Users)
+export const UsersContainer = connect<MapStateToPropsType, MapDispatchToPropsType, {}, AppStateType>(mapStateToProps, mapDispatchToProps)(UsersC)
