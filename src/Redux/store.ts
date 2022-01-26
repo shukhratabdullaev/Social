@@ -1,7 +1,7 @@
 import {changeUserMessageTextAC, dialogReducer, sendUsersMessageAC} from "../Redux/dialog-reducer"
 import {PostType} from "../components/Profile/Profile";
 import {addPostAC, ChangeNewTextAC, profileReducer} from "./profile-reducer";
-import {followAC, setUsersAC, unfollowAC} from "./users-reducer";
+import {followAC, setCurrentPageAC, setUsersAC, setUserTotalCountAC, unfollowAC} from "./users-reducer";
 import {sidebarReducer} from "./sidebar-reducer";
 
 type MessageType = {
@@ -43,6 +43,8 @@ export type ActionsType =
     | ReturnType<typeof followAC>
     | ReturnType<typeof unfollowAC>
     | ReturnType<typeof setUsersAC>
+    | ReturnType<typeof setCurrentPageAC>
+    | ReturnType<typeof setUserTotalCountAC>
 
 
 export const store: StoreType = {
