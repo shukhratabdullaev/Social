@@ -3,18 +3,14 @@ import React from 'react';
 import './index.css';
 import ReactDOM from 'react-dom';
 import {BrowserRouter} from 'react-router-dom';
-import App from './App';
 import {Provider} from 'react-redux';
-import {store} from '../src/Redux/redux-store';
+import { store } from './Redux/redux-store';
+import { App } from './App';
 
 ReactDOM.render(
     <BrowserRouter basename={'social'}>
         <Provider store={store}>
-            <App dialogsPage={store.getState().dialogsPage}
-                 profilePage={store.getState().profilePage}
-                 sidebar={store.getState().sidebar}
-                 usersPage={store.getState().usersPage}
-            />
+            <App {...store.getState()}/>
         </Provider>
     </BrowserRouter>, document.getElementById('root')
 );

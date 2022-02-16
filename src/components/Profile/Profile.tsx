@@ -3,21 +3,15 @@ import {MyPostsContainer} from './MyPosts/MyPostsContainer';
 import {ProfileInfo} from './ProfileInfo/ProfileInfo';
 
 
-export type PostType = {
-    id: number
-    message: string
-    likesCount: number
-}
 
 export type ProfilePageType = {
-    message: string
-    posts: Array<PostType>
+    profile: any
 }
 
 export const Profile = (props: ProfilePageType) => {
     return (
         <div>
-            <ProfileInfo />
+            <ProfileInfo profile={props.profile} />
             <MyPostsContainer/>
         </div>
 

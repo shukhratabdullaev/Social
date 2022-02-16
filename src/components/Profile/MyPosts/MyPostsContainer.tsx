@@ -3,15 +3,23 @@ import {Dispatch} from 'redux';
 import {addPostAC, ChangeNewTextAC} from '../../../Redux/profile-reducer';
 import {AppStateType} from '../../../Redux/redux-store';
 import {MyPosts} from './MyPosts';
-import {PostType} from "../Profile";
+
+
+export type PostType = {
+    id: number
+    message: string
+    likesCount: number
+}
 
 export type ProfilePageType = {
     posts: Array<PostType>
     messageForNewPost: string
+    profile: any
 }
 type MapStateToPropsType = {
     posts: Array<PostType>
     messageForNewPost: string
+    profile: any
 }
 type MapDispatchToPropsType = {
     ChangeNewText: (newText: string) => void
@@ -23,7 +31,8 @@ export type ProfilePagePropsType = MapStateToPropsType & MapDispatchToPropsType
 const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return {
         posts: state.profilePage.posts,
-        messageForNewPost: state.profilePage.messageForNewPost
+        messageForNewPost: state.profilePage.messageForNewPost,
+        profile: state.profilePage.profile
     }
 }
 

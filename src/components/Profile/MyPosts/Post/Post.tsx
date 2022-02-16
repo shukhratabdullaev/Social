@@ -1,5 +1,5 @@
 import React from 'react';
-import { PostType } from '../../Profile';
+import { PostType } from '../MyPostsContainer';
 import s from './Post.module.css'
 
 

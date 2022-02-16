@@ -1,5 +1,5 @@
 import {DialogsPageType} from "../components/Dialogs/DialogsContainer"
-import {ActionsType} from "./store"
+import { ActionsType } from "./redux-store"
 
 const CHANGE_MESSAGE_TEXT = 'UPDATE-USER-MESSAGE-TEXT'
 const SEND_USERS_MESSAGE = 'SEND-USERS-MESSAGE'
