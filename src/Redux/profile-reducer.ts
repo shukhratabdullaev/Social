@@ -1,5 +1,7 @@
-import {PostType, ProfilePageType } from "../components/Profile/MyPosts/MyPostsContainer";
+import { Dispatch } from "redux";
+import {PostType, ProfilePageType, ProfileType} from "../components/Profile/MyPosts/MyPostsContainer";
 import { ActionsType } from "./redux-store";
+import {usersAPI} from "../api/api";
 
 const ADD_POST = 'ADD-POST'
 const CHANGE_NEW_TEXT = 'CHANGE-NEW-TEXT'
@@ -14,7 +16,16 @@ let initialState = {
         {id: 4, message: 'Da da', likesCount: 11},
     ],
     messageForNewPost: '',
-    profile: null
+    profile: {
+        fullName: '',
+        userId: 2,
+        photos: {
+            small: '',
+            large: ''
+        },
+        lookingForAJobDescription: '',
+        aboutMe: ''
+    }
 }
 
 export const profileReducer = (state: ProfilePageType = initialState, action: ActionsType): ProfilePageType => {
@@ -51,18 +62,23 @@ export const addPostAC = (postMessage: string) => {
         postMessage: postMessage
     } as const
 }
-export const setUserProfile = (profile: any) => {
+export const setUserProfile = (profile: ProfileType) => {
     return {
         type: SET_USER_PROFILE,
         profile
     } as const
 }
-
-
+export const getUserProfile = (userId: number) => (dispatch: Dispatch) => {
+    usersAPI.getProfile(userId).then(response => {
+        dispatch(setUserProfile(response.data))
+    })
+}
 export const ChangeNewTextAC = (newText: string) => {
     return {
         type: CHANGE_NEW_TEXT,
         newText: newText
     } as const
 }
+
+
 

@@ -12,7 +12,8 @@ export const Header = (props: UserDataType) => {
                  alt={'avatar'}
             />
             <div className={s.loginBlock}>
-                {props.isAuth ? props.login : <Link to={'/login'}>Login</Link>}
+                {props.isAuth ? props.login
+                  : <Link to={'/login'}>Login</Link>}
             </div>
         </header>
     )

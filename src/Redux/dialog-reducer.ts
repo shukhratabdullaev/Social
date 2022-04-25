@@ -36,7 +36,7 @@ export const dialogReducer = (state: DialogsPageType = initialState, action: Act
             return {
                 ...state,
                 newMessage: '',
-                messages: [...state.messages, {id: 6, message: state.newMessage}]
+                messages: [...state.messages, {id: 6, message: action.messageText}]
             }
         default:
             return state

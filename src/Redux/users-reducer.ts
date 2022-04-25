@@ -70,13 +70,13 @@ export const usersReducer = (state: UsersType = initialState, action: ActionsTyp
 	}
 }
 
-export const follow = (userId: number) => {
+export const followSuccess = (userId: number) => {
 	return {
 		type: FOLLOW,
 		userId
 	} as const
 }
-export const unfollow = (userId: number) => {
+export const unfollowSuccess = (userId: number) => {
 	return {
 		type: UNFOLLOW,
 		userId
@@ -122,6 +122,26 @@ export const getUsersTC = (currentPage: number, pageSize: number) => (dispatch: 
 		dispatch(setUsers(data.items))
 		dispatch(setUserTotalCount(data.totalUsersCount))
 	});
+}
+export const follow = (userId: number) => (dispatch: Dispatch) => {
+	dispatch(toggleFollowingProgress(true, userId));
+	usersAPI.follow(userId)
+		.then(response => {
+			if (response.data.resultCode === 0) {
+				dispatch(followSuccess(userId))
+			}
+			dispatch(toggleFollowingProgress(false, userId))
+		})
+}
+export const unfollow = (userId: number) => (dispatch: Dispatch) => {
+	dispatch(toggleFollowingProgress(true, userId));
+	usersAPI.unfollow(userId)
+		.then(response => {
+			if (response.data.resultCode === 0) {
+				dispatch(unfollowSuccess(userId))
+			}
+			dispatch(toggleFollowingProgress(false, userId))
+		})
 }
 
 

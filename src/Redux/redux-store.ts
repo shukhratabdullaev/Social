@@ -3,12 +3,12 @@ import {changeUserMessageTextAC, dialogReducer, sendUsersMessageAC} from "./dial
 import {addPostAC, ChangeNewTextAC, profileReducer, setUserProfile} from "./profile-reducer";
 import {authReducer} from "./auth-reducer";
 import {
-	follow,
+	followSuccess,
 	setCurrentPage,
 	setUsers,
 	setUserTotalCount, toggleFollowingProgress,
 	toggleIsFetching,
-	unfollow,
+	unfollowSuccess,
 	usersReducer
 } from "./users-reducer";
 import thunk from "redux-thunk";
@@ -18,8 +18,8 @@ export type ActionsType =
 	| ReturnType<typeof ChangeNewTextAC>
 	| ReturnType<typeof changeUserMessageTextAC>
 	| ReturnType<typeof sendUsersMessageAC>
-	| ReturnType<typeof follow>
-	| ReturnType<typeof unfollow>
+	| ReturnType<typeof followSuccess>
+	| ReturnType<typeof unfollowSuccess>
 	| ReturnType<typeof setUsers>
 	| ReturnType<typeof setCurrentPage>
 	| ReturnType<typeof setUserTotalCount>

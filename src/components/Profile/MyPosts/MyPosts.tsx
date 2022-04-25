@@ -26,7 +26,7 @@ export const MyPosts = (props: ProfilePagePropsType) => {
             </div>
             <div>
                 <div>
-                    <textarea value={props.messageForNewPost} onChange={changeNewTextHandler}></textarea>
+                    <textarea value={props.messageForNewPost} onChange={changeNewTextHandler}/>
                 </div>
                 <div>
                     <button onClick={addPost}>Add post</button>
