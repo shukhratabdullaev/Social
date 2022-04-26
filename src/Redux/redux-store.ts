@@ -13,6 +13,18 @@ import {
 } from "./users-reducer";
 import thunk from "redux-thunk";
 
+
+let rootReducer = combineReducers({
+	profilePage: profileReducer,
+	dialogsPage: dialogReducer,
+	usersPage: usersReducer,
+	auth: authReducer
+})
+
+
+export const store = createStore(rootReducer, applyMiddleware(thunk))
+
+
 export type ActionsType =
 	| ReturnType<typeof addPostAC>
 	| ReturnType<typeof ChangeNewTextAC>
@@ -27,18 +39,8 @@ export type ActionsType =
 	| ReturnType<typeof setUserProfile>
 	| ReturnType<typeof toggleFollowingProgress>
 
-
-let rootReducer = combineReducers({
-	profilePage: profileReducer,
-	dialogsPage: dialogReducer,
-	usersPage: usersReducer,
-	auth: authReducer
-})
-
-
 export type AppStateType = ReturnType<typeof rootReducer>
 
 
-export const store = createStore(rootReducer, applyMiddleware(thunk))
 
 

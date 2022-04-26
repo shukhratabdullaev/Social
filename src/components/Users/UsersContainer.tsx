@@ -4,6 +4,8 @@ import {follow, getUsersTC, setCurrentPage, unfollow} from '../../Redux/users-re
 import React from 'react';
 import {Users, UsersPropsType} from './Users';
 import Preloader from "../common/Preloader/Preloader";
+import {WithAuthRedirect} from "../hoc/WithAuthRedirect";
+import {compose} from 'redux';
 
 class UsersContainer extends React.Component<UsersAPIComponentPropsType, UsersPropsType> {
 
@@ -34,6 +36,24 @@ class UsersContainer extends React.Component<UsersAPIComponentPropsType, UsersPr
 		</>
 	}
 }
+
+const mapStateToProps = (state: AppStateType) => {
+	return {
+		users: state.usersPage.users,
+		pageSize: state.usersPage.pageSize,
+		totalUsersCount: state.usersPage.totalUsersCount,
+		currentPage: state.usersPage.currentPage,
+		isFetching: state.usersPage.isFetching,
+		followingInProgress: state.usersPage.followingInProgress,
+		getUsersTC: state.usersPage.getUsers
+	}
+}
+
+
+export default compose<React.ComponentType>(
+	connect(mapStateToProps, {follow: follow, unfollow: unfollow, setCurrentPage, getUsersTC}),
+	WithAuthRedirect
+)(UsersContainer)
 
 
 export type UserType = {
@@ -66,24 +86,3 @@ type MapDispatchToPropsType = {
 
 export type UsersAPIComponentPropsType = MapStateToPropsType & MapDispatchToPropsType
 
-
-const mapStateToProps = (state: AppStateType) => {
-	return {
-		users: state.usersPage.users,
-		pageSize: state.usersPage.pageSize,
-		totalUsersCount: state.usersPage.totalUsersCount,
-		currentPage: state.usersPage.currentPage,
-		isFetching: state.usersPage.isFetching,
-		followingInProgress: state.usersPage.followingInProgress,
-		getUsersTC: state.usersPage.getUsers
-	}
-}
-
-
-export default connect<MapStateToPropsType, MapDispatchToPropsType, {}, AppStateType>(mapStateToProps,
-	{
-		follow: follow,
-		unfollow: unfollow,
-		setCurrentPage,
-		getUsersTC
-	})(UsersContainer)
