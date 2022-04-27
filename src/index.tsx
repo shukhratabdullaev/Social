@@ -7,6 +7,7 @@ import {Provider} from 'react-redux';
 import { store } from './Redux/redux-store';
 import { App } from './App';
 
+
 ReactDOM.render(
     <BrowserRouter basename={'social'}>
         <Provider store={store}>
