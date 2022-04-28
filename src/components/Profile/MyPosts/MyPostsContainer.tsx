@@ -12,7 +12,8 @@ const mapStateToProps = (state: AppStateType) => {
 	return {
 		posts: state.profilePage.posts,
 		messageForNewPost: state.profilePage.messageForNewPost,
-		profile: state.profilePage.profile
+		profile: state.profilePage.profile,
+		status: state.profilePage.status
 	}
 }
 
@@ -55,6 +56,7 @@ export type ProfilePageType = {
 	posts: Array<PostType>
 	messageForNewPost: string
 	profile: ProfileType
+	status: string
 }
 type MapStateToPropsType = ProfilePageType
 type MapDispatchToPropsType = {

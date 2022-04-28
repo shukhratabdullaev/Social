@@ -1,7 +1,7 @@
-import {applyMiddleware, combineReducers, createStore} from "redux";
-import {changeUserMessageTextAC, dialogReducer, sendUsersMessageAC} from "./dialog-reducer";
-import {addPostAC, ChangeNewTextAC, profileReducer, setUserProfile} from "./profile-reducer";
-import {authReducer} from "./auth-reducer";
+import { applyMiddleware, combineReducers, createStore } from "redux";
+import { changeUserMessageTextAC, dialogReducer, sendUsersMessageAC } from "./dialog-reducer";
+import { addPostAC, ChangeNewTextAC, profileReducer, setUserStatus, setUserProfile } from "./profile-reducer";
+import { authReducer } from "./auth-reducer";
 import {
 	followSuccess,
 	setCurrentPage,
@@ -38,6 +38,7 @@ export type ActionsType =
 	| ReturnType<typeof toggleIsFetching>
 	| ReturnType<typeof setUserProfile>
 	| ReturnType<typeof toggleFollowingProgress>
+	| ReturnType<typeof setUserStatus>
 
 export type AppStateType = ReturnType<typeof rootReducer>
 
