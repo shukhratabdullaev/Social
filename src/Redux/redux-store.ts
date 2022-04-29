@@ -1,7 +1,9 @@
 import { applyMiddleware, combineReducers, createStore } from "redux";
-import { changeUserMessageTextAC, dialogReducer, sendUsersMessageAC } from "./dialog-reducer";
-import { addPostAC, ChangeNewTextAC, profileReducer, setUserStatus, setUserProfile } from "./profile-reducer";
+import { reducer as formReducer } from 'redux-form';
+import thunk from "redux-thunk";
 import { authReducer } from "./auth-reducer";
+import { dialogReducer, sendUsersMessageAC } from "./dialog-reducer";
+import { addPostAC, profileReducer, setUserProfile, setUserStatus } from "./profile-reducer";
 import {
 	followSuccess,
 	setCurrentPage,
@@ -11,14 +13,15 @@ import {
 	unfollowSuccess,
 	usersReducer
 } from "./users-reducer";
-import thunk from "redux-thunk";
+
 
 
 let rootReducer = combineReducers({
 	profilePage: profileReducer,
 	dialogsPage: dialogReducer,
 	usersPage: usersReducer,
-	auth: authReducer
+	auth: authReducer,
+	form: formReducer,
 })
 
 
@@ -27,8 +30,6 @@ export const store = createStore(rootReducer, applyMiddleware(thunk))
 
 export type ActionsType =
 	| ReturnType<typeof addPostAC>
-	| ReturnType<typeof ChangeNewTextAC>
-	| ReturnType<typeof changeUserMessageTextAC>
 	| ReturnType<typeof sendUsersMessageAC>
 	| ReturnType<typeof followSuccess>
 	| ReturnType<typeof unfollowSuccess>

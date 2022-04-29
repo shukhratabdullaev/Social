@@ -1,10 +1,9 @@
 import { Dispatch } from "redux";
 import { profileAPI } from "../api/api";
-import { PostType, ProfilePageType, ProfileType } from "../components/Profile/MyPosts/MyPostsContainer";
+import { ProfilePageType, ProfileType } from "../components/Profile/MyPosts/MyPostsContainer";
 import { ActionsType } from "./redux-store";
 
 const ADD_POST = 'ADD-POST'
-const CHANGE_NEW_TEXT = 'CHANGE-NEW-TEXT'
 const SET_USER_PROFILE = 'SET_USER_PROFILE'
 const SET_STATUS = 'SET_STATUS'
 
@@ -16,7 +15,6 @@ let initialState = {
         { id: 3, message: 'blabla', likesCount: 11 },
         { id: 4, message: 'Da da', likesCount: 11 },
     ],
-    messageForNewPost: '',
     profile: {
         fullName: '',
         userId: 0,
@@ -33,25 +31,18 @@ let initialState = {
 export const profileReducer = (state: ProfilePageType = initialState, action: ActionsType): ProfilePageType => {
     switch (action.type) {
         case ADD_POST: {
-            const newPost: PostType = {
-                id: 5,
-                message: action.postMessage,
-                likesCount: 0
-            }
             return {
                 ...state,
-                posts: [...state.posts, newPost],
-                messageForNewPost: ''
+                posts: [...state.posts,
+                {
+                    id: 5,
+                    message: action.postMessage,
+                    likesCount: 0
+                }],
             }
         }
         case SET_USER_PROFILE: {
             return { ...state, profile: action.profile }
-        }
-        case CHANGE_NEW_TEXT: {
-            return {
-                ...state,
-                messageForNewPost: action.newText
-            }
         }
         case SET_STATUS: {
             return {
@@ -67,7 +58,7 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Ac
 export const addPostAC = (postMessage: string) => {
     return {
         type: ADD_POST,
-        postMessage: postMessage
+        postMessage
     } as const
 }
 export const setUserProfile = (profile: ProfileType) => {
@@ -81,12 +72,6 @@ export const getUserProfile = (userId: number) => (dispatch: Dispatch) => {
         .then(response => {
             dispatch(setUserProfile(response.data))
         })
-}
-export const ChangeNewTextAC = (newText: string) => {
-    return {
-        type: CHANGE_NEW_TEXT,
-        newText: newText
-    } as const
 }
 export const setUserStatus = (status: string) => {
     return {

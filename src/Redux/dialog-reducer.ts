@@ -1,7 +1,6 @@
 import {DialogsPageType} from "../components/Dialogs/DialogsContainer"
 import { ActionsType } from "./redux-store"
 
-const CHANGE_MESSAGE_TEXT = 'UPDATE-USER-MESSAGE-TEXT'
 const SEND_USERS_MESSAGE = 'SEND-USERS-MESSAGE'
 
 let initialState = {
@@ -20,22 +19,15 @@ let initialState = {
         {id: 4, message: 'Yo'},
         {id: 5, message: 'Yo'},
     ],
-    newMessage: ''
 }
 
 export const dialogReducer = (state: DialogsPageType = initialState, action: ActionsType): DialogsPageType => {
 
 
     switch (action.type) {
-        case CHANGE_MESSAGE_TEXT:
-            return {
-                ...state,
-                newMessage: action.newMessageText
-            }
         case SEND_USERS_MESSAGE:
             return {
                 ...state,
-                newMessage: '',
                 messages: [...state.messages, {id: 6, message: action.messageText}]
             }
         default:
@@ -44,12 +36,6 @@ export const dialogReducer = (state: DialogsPageType = initialState, action: Act
 }
 
 
-export const changeUserMessageTextAC = (userText: string) => {
-    return {
-        type: CHANGE_MESSAGE_TEXT,
-        newMessageText: userText
-    } as const
-}
 export const sendUsersMessageAC = (messageText: string) => {
     return {
         type: SEND_USERS_MESSAGE,

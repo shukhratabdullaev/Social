@@ -1,10 +1,10 @@
-import {changeUserMessageTextAC, sendUsersMessageAC} from '../../Redux/dialog-reducer';
-import {connect} from 'react-redux';
-import {Dialogs} from './Dialogs';
-import {AppStateType} from '../../Redux/redux-store';
-import {compose, Dispatch} from 'redux';
-import {WithAuthRedirect} from "../hoc/WithAuthRedirect";
 import { ComponentType } from 'react';
+import { connect } from 'react-redux';
+import { compose, Dispatch } from 'redux';
+import { sendUsersMessageAC } from '../../Redux/dialog-reducer';
+import { AppStateType } from '../../Redux/redux-store';
+import { WithAuthRedirect } from "../hoc/WithAuthRedirect";
+import { Dialogs } from './Dialogs';
 
 
 const mapStateToProps = (state: AppStateType) => {
@@ -14,9 +14,6 @@ const mapStateToProps = (state: AppStateType) => {
 }
 const mapDispatchToProps = (dispatch: Dispatch) => {
 	return {
-		onChangeUserMessageHandler: (userText: string) => {
-			dispatch(changeUserMessageTextAC(userText))
-		},
 		addUsersMessage: (messageText: string) => {
 			dispatch(sendUsersMessageAC(messageText))
 		}
@@ -33,7 +30,6 @@ export default compose<ComponentType>(
 export type DialogsPageType = {
 	dialogs: Array<DialogType>
 	messages: Array<MessageType>
-	newMessage: string
 }
 export type MessageType = {
 	id: number
@@ -49,7 +45,6 @@ type MapStateToPropsType = {
 }
 
 type MapDispatchToPropsType = {
-	onChangeUserMessageHandler: (userText: string) => void
 	addUsersMessage: (messageText: string) => void
 }
 

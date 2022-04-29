@@ -1,8 +1,8 @@
-import {connect} from 'react-redux';
-import {Dispatch} from 'redux';
-import {addPostAC, ChangeNewTextAC} from '../../../Redux/profile-reducer';
-import {AppStateType} from '../../../Redux/redux-store';
-import {MyPosts} from './MyPosts';
+import { connect } from 'react-redux';
+import { Dispatch } from 'redux';
+import { addPostAC } from '../../../Redux/profile-reducer';
+import { AppStateType } from '../../../Redux/redux-store';
+import { MyPosts } from './MyPosts';
 
 
 export type ProfilePagePropsType = MapStateToPropsType & MapDispatchToPropsType
@@ -11,7 +11,6 @@ export type ProfilePagePropsType = MapStateToPropsType & MapDispatchToPropsType
 const mapStateToProps = (state: AppStateType) => {
 	return {
 		posts: state.profilePage.posts,
-		messageForNewPost: state.profilePage.messageForNewPost,
 		profile: state.profilePage.profile,
 		status: state.profilePage.status
 	}
@@ -19,9 +18,6 @@ const mapStateToProps = (state: AppStateType) => {
 
 const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
 	return {
-		ChangeNewText: (newText: string) => {
-			dispatch(ChangeNewTextAC(newText))
-		},
 		addPost: (postMessage: string) => {
 			dispatch(addPostAC(postMessage))
 		}
@@ -54,12 +50,10 @@ export type PostType = {
 
 export type ProfilePageType = {
 	posts: Array<PostType>
-	messageForNewPost: string
 	profile: ProfileType
 	status: string
 }
 type MapStateToPropsType = ProfilePageType
 type MapDispatchToPropsType = {
-	ChangeNewText: (newText: string) => void
 	addPost: (postMessage: string) => void
 }
