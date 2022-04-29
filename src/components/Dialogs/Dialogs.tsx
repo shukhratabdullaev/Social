@@ -1,5 +1,7 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
+import { maxLengthCreator, Required } from '../../utils/validator/Validators';
+import { Textarea } from '../common/FormsControls/FormsControls';
 import { DialogItem } from "./DialogItem/DialogItem";
 import s from './Dialogs.module.css';
 import { DialogsPageType } from './DialogsContainer';
@@ -20,7 +22,7 @@ export const Dialogs = (props: DialogsPropsType) => {
 	const addNewMessage = (values: any) => {
 		props.addUsersMessage(values.newMessageBody)
 	}
-	
+
 	return (
 		<div className={s.dialogs}>
 			<div className={s.dialogItems}>
@@ -35,11 +37,13 @@ export const Dialogs = (props: DialogsPropsType) => {
 }
 
 
+const maxLength = maxLengthCreator(100)
+
 const AddMessageForm = (props: any) => {
 	return (
 		<form onSubmit={props.handleSubmit}>
 			<div>
-				<Field component={'textarea'} name={'newMessageBody'} placeholder={'Enter your message'} />
+				<Field validate={[Required, maxLength]} component={Textarea} name={'newMessageBody'} placeholder={'Enter your message'} />
 			</div>
 			<div>
 				<button>Send</button>
