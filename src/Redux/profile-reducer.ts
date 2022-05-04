@@ -17,7 +17,7 @@ let initialState = {
     ],
     profile: {
         fullName: '',
-        userId: 0,
+        userId: null,
         photos: {
             small: '',
             large: ''

@@ -1,4 +1,5 @@
 import React from 'react'
+import style from './../common/FormsControls/FormControls.module.css'
 import { connect, useSelector } from 'react-redux'
 import { Navigate } from 'react-router-dom'
 import { compose } from 'redux'
@@ -36,6 +37,11 @@ const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
 						name={'rememberMe'}
 						component={Input} />remember me
 				</div>
+				{ props.error && 
+					<div className={style.formSummaryError}>
+						{props.error}
+					</div>
+				}
 				<div>
 					<button>Login</button>
 				</div>

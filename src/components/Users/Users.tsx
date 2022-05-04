@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { Navigate, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import usersPhoto from "../../assets/images/users-img.jpg";
 import { AppStateType } from '../../Redux/redux-store';
 import styles from "./users.module.css";
@@ -66,7 +66,7 @@ export const Users = (props: UsersPropsType) => {
 									onClick={() => props.follow(u.id)}>Follow</button>
 							}
 						</div>
-						: <button onClick={() => <Navigate to={'/login'} />}>Follow</button>
+						: null
 					}
 				</span>
 				<span>

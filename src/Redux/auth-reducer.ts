@@ -58,11 +58,16 @@ export const getAuthUserData = () => (dispatch: Dispatch) => {
 }
 
 
+
 export const login = (email: string, password: string, rememberMe: boolean): appThunk => (dispatch) => {
   authApi.login(email, password, rememberMe)
     .then(response => {
       if (response.data.resultCode === 0) {
         dispatch(getAuthUserData())
+      } else {
+        const message = response.data.messages.length > 0 ? response.data.messages[0] : 'Some error'
+        alert(message)
+
       }
     });
 }

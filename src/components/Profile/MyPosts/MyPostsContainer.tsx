@@ -32,7 +32,7 @@ export type ProfileType = {
 	fullName: string
 	// uniqueUrlName?: string
 	// followed: boolean
-	userId: number
+	userId: number | null
 	photos?: {
 		small: string
 		large: string
