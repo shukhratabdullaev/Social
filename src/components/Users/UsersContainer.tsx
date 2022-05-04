@@ -1,13 +1,12 @@
-import {connect} from 'react-redux';
-import {AppStateType} from '../../Redux/redux-store';
-import {follow, getUsersTC, setCurrentPage, unfollow} from '../../Redux/users-reducer';
 import React from 'react';
-import {Users, UsersPropsType} from './Users';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import { AppStateType } from '../../Redux/redux-store';
+import { follow, getUsersTC, setCurrentPage, unfollow } from '../../Redux/users-reducer';
 import Preloader from "../common/Preloader/Preloader";
-import {WithAuthRedirect} from "../hoc/WithAuthRedirect";
-import {compose} from 'redux';
+import { Users } from './Users';
 
-class UsersContainer extends React.Component<UsersAPIComponentPropsType, UsersPropsType> {
+class UsersContainer extends React.Component<UsersAPIComponentPropsType> {
 
 
 	componentDidMount() {
@@ -45,14 +44,12 @@ const mapStateToProps = (state: AppStateType) => {
 		currentPage: state.usersPage.currentPage,
 		isFetching: state.usersPage.isFetching,
 		followingInProgress: state.usersPage.followingInProgress,
-		getUsersTC: state.usersPage.getUsers
 	}
 }
 
 
 export default compose<React.ComponentType>(
 	connect(mapStateToProps, {follow: follow, unfollow: unfollow, setCurrentPage, getUsersTC}),
-	WithAuthRedirect
 )(UsersContainer)
 
 

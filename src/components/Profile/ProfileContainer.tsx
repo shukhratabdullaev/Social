@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { getUserProfile, getUserStatus, updateUserStatus } from "../../Redux/profile-reducer";
 import { AppStateType } from "../../Redux/redux-store";
+import { WithAuthRedirect } from '../hoc/WithAuthRedirect';
 import { ProfileType } from './MyPosts/MyPostsContainer';
 import { Profile } from "./Profile";
 
@@ -53,4 +54,5 @@ let mapStateToProps = (state: AppStateType) => ({
 
 export default compose<React.ComponentType>(
 	connect(mapStateToProps, { getUserProfile, getUserStatus, updateUserStatus }),
+	WithAuthRedirect
 )(ProfileContainer)

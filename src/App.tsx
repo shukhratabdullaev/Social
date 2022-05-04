@@ -6,8 +6,8 @@ import ProfileContainer from './components/Profile/ProfileContainer';
 import UsersContainer from './components/Users/UsersContainer';
 import HeaderContainer from "./components/Header/HeaderContainer";
 import {AppStateType} from "./Redux/redux-store";
-import {Login} from './components/Login/Login';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
+import Login from './components/Login/Login';
 
 
 export const App = (state: AppStateType) => {
@@ -24,7 +24,7 @@ export const App = (state: AppStateType) => {
 
 					<Route path='/users' element={<UsersContainer/>}/>
 
-					<Route path='/login' element={<Login/>}/>
+					<Route path='/login' element={<Login />}/>
 
 					{/*<Route path={'/404'} element={<h1 style={{textAlign: 'center'}}>404 not found</h1>}/>*/}
 
