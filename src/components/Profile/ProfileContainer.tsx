@@ -28,7 +28,7 @@ class ProfileContainer extends React.Component<ProfilePageAPIType, ProfileType> 
 
 
 	componentDidMount() {
-		let userId = Number(this.props.profile.userId)
+		let userId = this.props.profile.userId
 		if (!userId) {
 			userId = this.props.currentUserId!
 		}

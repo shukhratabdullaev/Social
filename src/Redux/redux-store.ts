@@ -2,6 +2,7 @@ import { useDispatch } from "react-redux";
 import { applyMiddleware, combineReducers, createStore } from "redux";
 import { reducer as formReducer } from 'redux-form';
 import thunk, { ThunkAction, ThunkDispatch } from "redux-thunk";
+import { appReducer, initializedSuccess } from "./app-reducer";
 import { authReducer } from "./auth-reducer";
 import { dialogReducer, sendUsersMessageAC } from "./dialog-reducer";
 import { addPostAC, profileReducer, setUserProfile, setUserStatus } from "./profile-reducer";
@@ -22,6 +23,7 @@ let rootReducer = combineReducers({
 	dialogsPage: dialogReducer,
 	usersPage: usersReducer,
 	auth: authReducer,
+	app: appReducer,
 	form: formReducer,
 })
 
@@ -47,6 +49,7 @@ export type ActionsType =
 	| ReturnType<typeof setUserProfile>
 	| ReturnType<typeof toggleFollowingProgress>
 	| ReturnType<typeof setUserStatus>
+	| ReturnType<typeof initializedSuccess>
 
 
 

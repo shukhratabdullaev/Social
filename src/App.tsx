@@ -1,39 +1,87 @@
-import React from 'react';
+import React, { Component, ComponentType } from 'react';
+import { connect } from 'react-redux';
+import { Route, Routes } from 'react-router-dom';
+import { compose } from 'redux';
 import './App.css';
-import {Navbar} from './components/Navbar/Navbar';
-import {Route, Routes} from 'react-router-dom';
+import Preloader from './components/common/Preloader/Preloader';
+import { WithRouter } from './components/common/WithRouter/WithRouter';
+import DialogsContainer from './components/Dialogs/DialogsContainer';
+import HeaderContainer from "./components/Header/HeaderContainer";
+import Login from './components/Login/Login';
+import { Navbar } from './components/Navbar/Navbar';
 import ProfileContainer from './components/Profile/ProfileContainer';
 import UsersContainer from './components/Users/UsersContainer';
-import HeaderContainer from "./components/Header/HeaderContainer";
-import {AppStateType} from "./Redux/redux-store";
-import DialogsContainer from './components/Dialogs/DialogsContainer';
-import Login from './components/Login/Login';
+import { initializeApp } from './Redux/app-reducer';
+import { AppStateType } from './Redux/redux-store';
 
 
-export const App = (state: AppStateType) => {
+class App extends Component<AppPropsType> {
 
-	return (
-		<div className='app-wrapper'>
-			<HeaderContainer {...state.auth} />
-			<Navbar/>
-			<div className='app-wrapper-content'>
-				<Routes>
-					<Route path='/dialogs' element={<DialogsContainer/>}/>
+	componentDidMount() {
+		this.props.initializeApp()
+	}
 
-					<Route path='/profile/' element={<ProfileContainer/>}/>
+	render() {
 
-					<Route path='/users' element={<UsersContainer/>}/>
+		if (!this.props.initialized) {
+			return <Preloader />
+		}
 
-					<Route path='/login' element={<Login />}/>
+		return (
+			<div className='app-wrapper'>
+				<HeaderContainer />
+				<Navbar />
+				<div className='app-wrapper-content'>
+					<Routes>
+						<Route path='/dialogs' element={<DialogsContainer />} />
 
-					{/*<Route path={'/404'} element={<h1 style={{textAlign: 'center'}}>404 not found</h1>}/>*/}
+						<Route path='/profile/' element={<ProfileContainer />} />
 
-					{/*<Route path='*' element={<Navigate to={'/404'}/>}/>*/}
+						<Route path='/users' element={<UsersContainer />} />
 
-				</Routes>
+						<Route path='/login' element={<Login />} />
+
+						{/*<Route path={'/404'} element={<h1 style={{textAlign: 'center'}}>404 not found</h1>}/>*/}
+
+						{/*<Route path='*' element={<Navigate to={'/404'}/>}/>*/}
+
+					</Routes>
+				</div>
 			</div>
-		</div>
 
-	);
+		);
+	}
+
+}
+
+
+
+
+const mapStateToProps = (state: AppStateType) => ({
+	initialized: state.app.initialized
+})
+
+export default compose<ComponentType>(
+	WithRouter,
+	connect(mapStateToProps, { initializeApp }),
+)(App)
+
+
+
+
+
+
+
+
+type AppPropsType = mapDispatchToPropsType & mapStateToPropsType
+
+
+
+type mapDispatchToPropsType = {
+	initializeApp: () => void
+}
+
+type mapStateToPropsType = {
+	initialized: boolean
 }
 
