@@ -21,8 +21,6 @@ const ProfileStatus = (props: ProfileStatusType) => {
     setEditMode(false)
     dispatch(updateUserStatus(status))
   }
-  
-  
 
   const onStatusChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     setStatus(e.currentTarget.value)
