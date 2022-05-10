@@ -5,7 +5,7 @@ import thunk, { ThunkAction, ThunkDispatch } from "redux-thunk";
 import { appReducer, initializedSuccess } from "./app-reducer";
 import { authReducer } from "./auth-reducer";
 import { dialogReducer, sendUsersMessageAC } from "./dialog-reducer";
-import { addPostAC, profileReducer, setUserProfile, setUserStatus } from "./profile-reducer";
+import { addPostAC, deletePost, profileReducer, setUserProfile, setUserStatus } from "./profile-reducer";
 import {
 	followSuccess,
 	setCurrentPage,
@@ -50,6 +50,7 @@ export type ActionsType =
 	| ReturnType<typeof toggleFollowingProgress>
 	| ReturnType<typeof setUserStatus>
 	| ReturnType<typeof initializedSuccess>
+	| ReturnType<typeof deletePost>
 
 
 

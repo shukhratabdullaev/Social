@@ -6,6 +6,7 @@ import { ActionsType } from "./redux-store";
 const ADD_POST = 'ADD-POST'
 const SET_USER_PROFILE = 'SET_USER_PROFILE'
 const SET_STATUS = 'SET_STATUS'
+const DELETE_POST = 'DELETE_POST'
 
 
 let initialState = {
@@ -50,6 +51,9 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Ac
                 status: action.status
             }
         }
+        case DELETE_POST: {
+            return { ...state, posts: state.posts.filter(p => p.id !== action.postId) }
+        }
         default:
             return state
     }
@@ -79,6 +83,7 @@ export const setUserStatus = (status: string) => {
         status
     } as const
 }
+export const deletePost = (postId: number) => ({ type: DELETE_POST, postId } as const)
 export const getUserStatus = (userId: number) => (dispatch: Dispatch) => {
 
     profileAPI.getStatus(userId)
