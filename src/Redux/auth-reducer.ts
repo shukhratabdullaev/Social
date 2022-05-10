@@ -2,7 +2,7 @@ import { Dispatch } from "redux";
 import { authApi } from "../api/api";
 import { appThunk } from "./redux-store";
 
-const SET_USER_DATA = 'SET_USER_DATA'
+const SET_USER_DATA = 'auth/SET_USER_DATA';
 
 
 
@@ -47,36 +47,29 @@ export const setAuthUserData = (userId: number, email: string, login: string, is
 
 
 
-export const getAuthUserData = () => (dispatch: Dispatch) => {
-  return authApi.me()
-    .then(response => {
-      if (response.data.resultCode === 0) {
-        let { id, email, login } = response.data.data
-        dispatch(setAuthUserData(id, email, login, true))
-      }
-    })
+export const getAuthUserData = () => async (dispatch: Dispatch) => {
+  const response = await authApi.me();
+  if (response.data.resultCode === 0) {
+    let { id, email, login } = response.data.data;
+    dispatch(setAuthUserData(id, email, login, true));
+  }
 }
 
 
 
-export const login = (email: string, password: string, rememberMe: boolean): appThunk => (dispatch) => {
-  authApi.login(email, password, rememberMe)
-    .then(response => {
-      if (response.data.resultCode === 0) {
-        dispatch(getAuthUserData())
-      } else {
-        const message = response.data.messages.length > 0 ? response.data.messages[0] : 'Some error'
-        alert(message)
-
-      }
-    });
+export const login = (email: string, password: string, rememberMe: boolean): appThunk => async (dispatch) => {
+  const response = await authApi.login(email, password, rememberMe)
+  if (response.data.resultCode === 0) {
+    dispatch(getAuthUserData())
+  } else {
+    const message = response.data.messages.length > 0 ? response.data.messages[0] : 'Some error'
+    alert(message)
+  }
 }
-export const logout = (): appThunk => (dispatch) => {
-  authApi.logout()
-    .then(response => {
-      if (response.data.resultCode === 0) {
-        dispatch(getAuthUserData())
-      }
-    });
+export const logout = (): appThunk => async (dispatch) => {
+  const response = await authApi.logout()
+  if (response.data.resultCode === 0) {
+    dispatch(getAuthUserData())
+  }
 }
 

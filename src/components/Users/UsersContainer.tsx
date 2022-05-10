@@ -11,18 +11,22 @@ class UsersContainer extends React.Component<UsersAPIComponentPropsType> {
 
 
 	componentDidMount() {
-		this.props.getUsersTC(this.props.currentPage, this.props.pageSize)
+
+		const { currentPage, pageSize } = this.props
+
+		this.props.getUsersTC(currentPage, pageSize)
 	}
 
 	onPageChanged = (pageNumber: number) => {
-		this.props.getUsersTC(pageNumber, this.props.pageSize)
+		const { pageSize } = this.props
+		this.props.getUsersTC(pageNumber, pageSize)
 	}
 
 	render() {
 
 
 		return <>
-			{this.props.isFetching ? <Preloader/> : null}
+			{this.props.isFetching ? <Preloader /> : null}
 			<Users
 				totalUsersCount={this.props.totalUsersCount}
 				pageSize={this.props.pageSize}
@@ -50,7 +54,8 @@ const mapStateToProps = (state: AppStateType) => {
 
 
 export default compose<React.ComponentType>(
-	connect(mapStateToProps, {follow: follow, unfollow: unfollow, setCurrentPage, getUsersTC: requestUsersTC}),
+	connect(mapStateToProps,
+		{ follow, unfollow, setCurrentPage, getUsersTC: requestUsersTC }),
 )(UsersContainer)
 
 
@@ -70,7 +75,6 @@ export type UsersType = {
 	currentPage: number
 	isFetching: boolean
 	followingInProgress: number[]
-	getUsers?: (currentPage: number, pageSize: number) => void
 }
 
 type MapStateToPropsType = UsersType

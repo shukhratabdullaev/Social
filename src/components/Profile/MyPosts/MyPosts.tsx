@@ -24,7 +24,7 @@ export const MyPosts = (props: ProfilePagePropsType) => {
             <div>
                 <h3>My posts</h3>
             </div>
-            <AddNewPostReduxForm onSubmit={addPost}/>
+            <AddNewPostReduxForm onSubmit={addPost} />
             <div className={s.posts}>
                 {postsElements}
             </div>

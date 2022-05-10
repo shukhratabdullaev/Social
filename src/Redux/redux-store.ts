@@ -12,7 +12,7 @@ import {
 	setUsers,
 	setUserTotalCount, toggleFollowingProgress,
 	toggleIsFetching,
-	unfollowSuccess,
+	unFollowSuccess,
 	usersReducer
 } from "./users-reducer";
 
@@ -41,7 +41,7 @@ export type ActionsType =
 	| ReturnType<typeof addPostAC>
 	| ReturnType<typeof sendUsersMessageAC>
 	| ReturnType<typeof followSuccess>
-	| ReturnType<typeof unfollowSuccess>
+	| ReturnType<typeof unFollowSuccess>
 	| ReturnType<typeof setUsers>
 	| ReturnType<typeof setCurrentPage>
 	| ReturnType<typeof setUserTotalCount>
@@ -51,8 +51,6 @@ export type ActionsType =
 	| ReturnType<typeof setUserStatus>
 	| ReturnType<typeof initializedSuccess>
 	| ReturnType<typeof deletePost>
-
-
 
 
 export const useAppDispatch = () =>

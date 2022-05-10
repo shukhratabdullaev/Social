@@ -1,45 +1,28 @@
 import React from 'react'
-import style from './../common/FormsControls/FormControls.module.css'
 import { connect, useSelector } from 'react-redux'
 import { Navigate } from 'react-router-dom'
 import { compose } from 'redux'
-import { Field, InjectedFormProps, reduxForm } from 'redux-form'
+import { InjectedFormProps, reduxForm } from 'redux-form'
 import { login } from '../../Redux/auth-reducer'
 import { AppStateType } from '../../Redux/redux-store'
 import { Required } from '../../utils/validator/Validators'
-import { Input } from '../common/FormsControls/FormsControls'
+import { createField, Input } from '../common/FormsControls/FormsControls'
+import style from './../common/FormsControls/FormControls.module.css'
 
 
 
 
-const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
+const LoginForm: React.FC<InjectedFormProps<FormDataType>> = ({ handleSubmit, error }) => {
 	return (
 		<>
-			<form onSubmit={props.handleSubmit}>
-				<div>
-					<Field
-						validate={[Required]}
-						placeholder={'Login'}
-						name={'email'}
-						component={Input} />
-				</div>
-				<div>
-					<Field
-						validate={[Required]}
-						type={'password'}
-						placeholder={'Password'}
-						name={'password'}
-						component={Input} />
-				</div>
-				<div>
-					<Field
-						type={'checkbox'}
-						name={'rememberMe'}
-						component={Input} />remember me
-				</div>
-				{ props.error && 
+			<form onSubmit={handleSubmit}>
+				{createField('Email', 'email', [Required], Input, '', {type: 'email'})}
+				{createField('Password', 'password', [Required], Input, '', { type: 'password' })}
+				{createField('', 'rememberMe', [], Input, 'remember me', { type: 'checkbox' })}
+
+				{error &&
 					<div className={style.formSummaryError}>
-						{props.error}
+						{error}
 					</div>
 				}
 				<div>
@@ -62,15 +45,15 @@ export const Login = (props: LoginPropsType) => {
 	}
 
 	if (isAuth) {
-		return <Navigate to={'/profile'}/>
+		return <Navigate to={'/profile'} />
 	}
 
-		return (
-			<div>
-				<h1>Login</h1>
-				<LoginReduxForm onSubmit={onSubmit} />
-			</div>
-		)
+	return (
+		<div>
+			<h1>Login</h1>
+			<LoginReduxForm onSubmit={onSubmit} />
+		</div>
+	)
 }
 
 // export default connect(null, { login })(Login)
