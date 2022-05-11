@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { applyMiddleware, combineReducers, createStore } from "redux";
+import { applyMiddleware, combineReducers, compose, createStore } from "redux";
 import { reducer as formReducer } from 'redux-form';
 import thunk, { ThunkAction, ThunkDispatch } from "redux-thunk";
 import { appReducer, initializedSuccess } from "./app-reducer";
@@ -25,10 +25,13 @@ let rootReducer = combineReducers({
 	auth: authReducer,
 	app: appReducer,
 	form: formReducer,
-})
+});
+
+// @ts-ignore 
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+export const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)));
 
 
-export const store = createStore(rootReducer, applyMiddleware(thunk))
 
 
 export type AppStateType = ReturnType<typeof rootReducer>
