@@ -6,7 +6,7 @@ import { UserType } from './UsersContainer';
 export type UsersPropsType = {
 	users: Array<UserType>
 	pageSize: number
-	totalUsersCount: number
+	totalItemsCount: number
 	currentPage: number
 	onPageChanged: (pageNumber: number) => void
 	follow: (userId: number) => void
@@ -15,9 +15,9 @@ export type UsersPropsType = {
 }
 
 
-export const Users = ({ currentPage, onPageChanged, totalUsersCount, pageSize, users, ...props }: UsersPropsType) => {
+export const Users = ({ currentPage, onPageChanged, totalItemsCount, pageSize, users, ...props }: UsersPropsType) => {
 
-	let pagesCount = Math.ceil(totalUsersCount / pageSize)
+	let pagesCount = Math.ceil(totalItemsCount / pageSize)
 
 
 	let pages = [];
@@ -30,7 +30,7 @@ export const Users = ({ currentPage, onPageChanged, totalUsersCount, pageSize, u
 		<Paginator
 			currentPage={currentPage}
 			onPageChanged={onPageChanged}
-			totalUsersCount={totalUsersCount}
+			totalItemsCount={totalItemsCount}
 			pageSize={pageSize}
 		/>
 		{
