@@ -15,6 +15,10 @@ import { initializeApp } from './Redux/app-reducer';
 import { AppStateType, store } from './Redux/redux-store';
 
 
+
+
+
+
 class App extends Component<AppPropsType> {
 
 	componentDidMount() {
@@ -33,9 +37,13 @@ class App extends Component<AppPropsType> {
 				<Navbar />
 				<div className='app-wrapper-content'>
 					<Routes>
-						<Route path='/dialogs' element={<DialogsContainer />} />
 
-						<Route path='/profile/' element={<ProfileContainer />} />
+						<Route path='/dialogs' element={<React.Suspense fallback={<Preloader />}>
+							<DialogsContainer />
+						</React.Suspense>} />
+						<Route path='/profile' element={<React.Suspense fallback={<Preloader />}>
+							<ProfileContainer />
+						</React.Suspense>} />
 
 						<Route path='/users' element={<UsersContainer />} />
 
