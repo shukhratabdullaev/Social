@@ -1,6 +1,6 @@
 import React, { Component, ComponentType } from 'react';
-import { connect } from 'react-redux';
-import { Route, Routes } from 'react-router-dom';
+import { connect, Provider } from 'react-redux';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { compose } from 'redux';
 import './App.css';
 import Preloader from './components/common/Preloader/Preloader';
@@ -12,7 +12,7 @@ import { Navbar } from './components/Navbar/Navbar';
 import ProfileContainer from './components/Profile/ProfileContainer';
 import UsersContainer from './components/Users/UsersContainer';
 import { initializeApp } from './Redux/app-reducer';
-import { AppStateType } from './Redux/redux-store';
+import { AppStateType, store } from './Redux/redux-store';
 
 
 class App extends Component<AppPropsType> {
@@ -61,10 +61,18 @@ const mapStateToProps = (state: AppStateType) => ({
 	initialized: state.app.initialized
 })
 
-export default compose<ComponentType>(
+const AppContainer = compose<ComponentType>(
 	WithRouter,
 	connect(mapStateToProps, { initializeApp }),
 )(App)
+
+export const SamuraiJSApp = (props: any) => {
+	return <BrowserRouter basename={'social'}>
+		<Provider store={store}>
+			<AppContainer />
+		</Provider>
+	</BrowserRouter>
+}
 
 
 

@@ -1,19 +1,11 @@
-import reportWebVitals from './reportWebVitals';
-import React from 'react';
-import './index.css';
 import ReactDOM from 'react-dom';
-import {BrowserRouter} from 'react-router-dom';
-import {Provider} from 'react-redux';
-import { store } from './Redux/redux-store';
-import App from './App';
+import { SamuraiJSApp } from './App';
+import './index.css';
+import reportWebVitals from './reportWebVitals';
 
 
 ReactDOM.render(
-    <BrowserRouter basename={'social'}>
-        <Provider store={store}>
-            <App />
-        </Provider>
-    </BrowserRouter>, document.getElementById('root')
+    <SamuraiJSApp />, document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function
