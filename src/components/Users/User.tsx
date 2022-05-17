@@ -1,8 +1,8 @@
 import React from 'react';
 import { NavLink } from "react-router-dom";
-import usersPhoto from "../../assets/images/users-img.jpg";
-import styles from './Users.module.css';
 import { UserType } from './UsersContainer';
+import userPhoto from '../../assets/images/users-img.jpg'
+import styles from './Users.module.css'
 
 export type UserPropsType = {
 	user: UserType
@@ -25,7 +25,7 @@ export const User = ({ user, followingInProgress, unfollow, follow,   ...props }
 
 				<div>
 					<NavLink to={'/profile/' + user.id}>
-						<img src={user.photos.small !== null ? user.photos.small : usersPhoto} className={styles.userPhoto}
+						<img src={user.photos.small !== null ? user.photos.small : userPhoto} className={styles.userPhoto}
 							alt="avatar" />
 					</NavLink>
 				</div>
