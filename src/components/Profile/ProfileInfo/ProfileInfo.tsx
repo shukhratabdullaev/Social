@@ -3,6 +3,7 @@ import s from './ProfileInfo.module.css'
 import Preloader from "../../common/Preloader/Preloader";
 import { ProfileType } from "../MyPosts/MyPostsContainer";
 import ProfileStatus from './ProfileStatus';
+import userPhoto from '../../../assets/images/users-img.jpg';
 
 
 type ProfileInfoType = {
@@ -22,7 +23,7 @@ export const ProfileInfo = ({ profile, status, updateUserStatus }: ProfileInfoTy
 
             <div className={s.descriptionBlock}>
                 <h3>{profile.fullName}</h3>
-                <img src={profile.photos?.small} alt="ProfileAvatar" />
+                <img className={s.userPhoto} src={profile.photos?.small || userPhoto} alt="ProfileAvatar" />
                 <ProfileStatus status={status} updateUserStatus={updateUserStatus} />
                 <p>{profile.aboutMe}</p>
             </div>

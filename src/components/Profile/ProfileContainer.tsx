@@ -27,13 +27,20 @@ export type ProfilePageAPIType = MapStatePropsType & MapDispatchPropsType
 class ProfileContainer extends React.Component<ProfilePageAPIType, ProfileType> {
 
 
-	componentDidMount() {
+	refreshProfile() {
 		let userId = this.props.profile.userId
 		if (!userId) {
 			userId = this.props.currentUserId!
 		}
 		this.props.getUserProfile(userId)
 		this.props.getUserStatus(userId)
+	}
+
+	componentDidMount() {
+		this.refreshProfile()
+	}
+	componentDidUpdate() {
+			this.refreshProfile()
 	}
 
 	render() {
