@@ -1,6 +1,6 @@
 import React, { Component, ComponentType } from 'react';
 import { connect, Provider } from 'react-redux';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { compose } from 'redux';
 import './App.css';
 import Preloader from './components/common/Preloader/Preloader';
@@ -38,20 +38,27 @@ class App extends Component<AppPropsType> {
 				<div className='app-wrapper-content'>
 					<Routes>
 
-						<Route path='/dialogs' element={<React.Suspense fallback={<Preloader />}>
-							<DialogsContainer />
-						</React.Suspense>} />
-						<Route path='/profile' element={<React.Suspense fallback={<Preloader />}>
-							<ProfileContainer />
-						</React.Suspense>} />
+						<Route path='/social' element={<ProfileContainer />} />
+
+						<Route path='/profile' element={
+							<React.Suspense fallback={<Preloader />}>
+								<ProfileContainer />
+							</React.Suspense>
+						} />
+
+						<Route path='/dialogs' element={
+							<React.Suspense fallback={<Preloader />}>
+								<DialogsContainer />
+							</React.Suspense>
+						} />
 
 						<Route path='/users' element={<UsersContainer />} />
 
 						<Route path='/login' element={<Login />} />
 
-						{/*<Route path={'/404'} element={<h1 style={{textAlign: 'center'}}>404 not found</h1>}/>*/}
+						<Route path={'/404'} element={<h1 style={{ textAlign: 'center' }}>404 not found</h1>} />
 
-						{/*<Route path='*' element={<Navigate to={'/404'}/>}/>*/}
+						<Route path={'*'} element={<Navigate to={'/404'} />} />
 
 					</Routes>
 				</div>
